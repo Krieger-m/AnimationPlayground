@@ -1,4 +1,4 @@
-package com.krieger.animationplayground;
+package com.krieger.animationplayground.sandbox;
 
 import java.io.IOException;
 
@@ -39,7 +39,7 @@ public class AnimationFX extends Application {
             @Override
             public void handle(MouseEvent t) {            
                 if (t.getClickCount() >1) {
-                    gen.reset(can2, Color.BLUEVIOLET);
+                    gen.getRectangle(can2, Color.BLUEVIOLET);
                 }  
             }
         });
@@ -49,28 +49,58 @@ public class AnimationFX extends Application {
        new EventHandler<MouseEvent>() {
            @Override
            public void handle(MouseEvent e) {
-               can2.getGraphicsContext2D().clearRect(e.getX() - 5, e.getY() - 5, 10, 10);
+               can2.getGraphicsContext2D().clearRect(e.getX() - 10, e.getY() - 10, 20, 20);
            }
        });
     
         
         gen2.drawGrid(gridLayer.getGraphicsContext2D());
+
         
-        
-        gen.drawRedPath();
+        Thread t1 = new Thread(()->{
+//            try {
+//                Thread.sleep(200);
+//            }
+//            catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+            gen.drawRedPath();
             gen.drawRadialGradient(Color.web("#d7b1b1ff"),Color.web("#7f1616ff"));
             gen.drawLinearGradient(Color.web("#803232ff"),Color.web("#d3adadff"));
 
-        gen.drawBluePath();
+        });
+
+        Thread t2 = new Thread(()->{
+            try {
+                Thread.sleep(900);
+            }
+            catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            gen.drawBluePath();
             gen.drawRadialGradient(Color.web("#a2a4daff"),Color.web("#363347ff"));
             gen.drawLinearGradient(Color.web("#325480ff"),Color.web("#adb1d3ff"));
-         
-        gen.drawGreenPath();
+        });
+
+        Thread t3 = new Thread(()->{
+            try {
+                Thread.sleep(1500);
+            }
+            catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            gen.drawGreenPath();
             gen.drawRadialGradient(Color.web("#88bbaa"),Color.web("#334740"));
             gen.drawLinearGradient(Color.web("#328051ff"),Color.web("#add3beff"));
-                gen.drawDropShadow();
+            gen.drawDropShadow();
+        });
+
+        t1.start();
+        t2.start();
+        t3.start();
+
                 
-        gen.drawDropShadow();
+//        gen.drawDropShadow();
                 
         
 

@@ -1,4 +1,4 @@
-package com.krieger.animationplayground;
+package com.krieger.animationplayground.sandbox;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -24,10 +24,7 @@ public class ContentGenerator {
     }
 
     public Pane createBasic(){
-
-        
         p.getChildren().add(c);
-        
         return p;
     }
     
@@ -38,7 +35,6 @@ public class ContentGenerator {
     }
 
     public void drawShapes(){
-
         gc.setFill(Color.BLUEVIOLET);
         gc.setStroke(null);
 
@@ -101,10 +97,7 @@ public class ContentGenerator {
                         gc_.fillText(String.valueOf(y), 20,y);
                     }
                 }
-
-                
             }
-           
         }
     }
 
@@ -174,10 +167,11 @@ public class ContentGenerator {
         gc.applyEffect(new DropShadow(20,20,20,Color.web("#00000065")));
     }
 
-    public void reset(Canvas canvas, Color color) {
+    public void getRectangle(Canvas canvas, Color color) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(color);
         gc.fillRect(canvas.getWidth()/3, canvas.getHeight()/3, canvas.getWidth()/3, canvas.getHeight()/3);
+        gc.applyEffect(new DropShadow(20,20,20,Color.web("#00000065")));
     }
 
 }
